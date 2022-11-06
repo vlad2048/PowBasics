@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CollectionsExt\" />
-    <Folder Include="StringsExt\" />
+    <Folder Include="Serializers\" />
   </ItemGroup>
 
 </Project>

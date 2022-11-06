@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{37A9B727-88D1-432E-8711-01A9A0CF8F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowBasics", "Libs\PowBasics\PowBasics.csproj", "{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowBasics", "Libs\PowBasics\PowBasics.csproj", "{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowBasics.Geom", "Libs\PowBasics.Geom\PowBasics.Geom.csproj", "{C7E6363E-463F-42E1-B1CD-3C0697A54F65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowBasics.WinForms", "Libs\PowBasics.WinForms\PowBasics.WinForms.csproj", "{AADDD543-9151-4696-AB5A-5AF217EAC1B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,22 @@ Global
 		{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E6363E-463F-42E1-B1CD-3C0697A54F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E6363E-463F-42E1-B1CD-3C0697A54F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E6363E-463F-42E1-B1CD-3C0697A54F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E6363E-463F-42E1-B1CD-3C0697A54F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AADDD543-9151-4696-AB5A-5AF217EAC1B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AADDD543-9151-4696-AB5A-5AF217EAC1B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AADDD543-9151-4696-AB5A-5AF217EAC1B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AADDD543-9151-4696-AB5A-5AF217EAC1B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
+		{C7E6363E-463F-42E1-B1CD-3C0697A54F65} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
+		{AADDD543-9151-4696-AB5A-5AF217EAC1B7} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE94F977-B49B-49B2-A438-8C695557259D}
