@@ -7,9 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{37A9B727-8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowBasics", "Libs\PowBasics\PowBasics.csproj", "{884AD8E1-13AB-42DF-A1E1-31ED9E749D2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowBasics.Geom", "Libs\PowBasics.Geom\PowBasics.Geom.csproj", "{C7E6363E-463F-42E1-B1CD-3C0697A54F65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowBasics.Geom", "Libs\PowBasics.Geom\PowBasics.Geom.csproj", "{C7E6363E-463F-42E1-B1CD-3C0697A54F65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowBasics.WinForms", "Libs\PowBasics.WinForms\PowBasics.WinForms.csproj", "{AADDD543-9151-4696-AB5A-5AF217EAC1B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowBasics.WinForms", "Libs\PowBasics.WinForms\PowBasics.WinForms.csproj", "{AADDD543-9151-4696-AB5A-5AF217EAC1B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C3D6CB14-1EA7-4C55-8FA7-A59AF15C837F}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		License.txt = License.txt
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
