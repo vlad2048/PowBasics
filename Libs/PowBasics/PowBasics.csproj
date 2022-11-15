@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="CollectionsExt\" />
-    <Folder Include="ColorCode\" />
-    <Folder Include="RandomCode\" />
-    <Folder Include="StringsExt\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="CollectionsExt\" />
+		<Folder Include="ColorCode\" />
+		<Folder Include="RandomCode\" />
+		<Folder Include="StringsExt\" />
+	</ItemGroup>
 
 </Project>
