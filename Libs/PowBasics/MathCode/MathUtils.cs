@@ -1,4 +1,4 @@
-﻿namespace PowBasics.Math;
+﻿namespace PowBasics.MathCode;
 
 public static class MathUtils
 {

@@ -2,6 +2,15 @@
 
 public static class IEnumerableExt
 {
+	public static IEnumerable<T> RepeatInfinitely<T>(this IEnumerable<T> source)
+	{
+		var arr = source.ToArray();
+		while (true)
+			foreach (var elt in arr)
+				yield return elt;
+		// ReSharper disable once IteratorNeverReturns
+	}
+
 	public static string JoinText<T>(this IEnumerable<T> source, string separator = ";") => string.Join(separator, source);
 
 	public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
