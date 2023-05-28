@@ -7,8 +7,25 @@ public readonly record struct R
 	public int Width { get; }
 	public int Height { get; }
 
-	public int Right => Math.Max(X, X + Width - 1);
-	public int Bottom => Math.Max(Y, Y + Height - 1);
+	public static bool UseOldBehaviorForRightAndBottom { get; set; }
+
+	/// <summary>
+	/// Represents the pixel after the right of the rectangle such that Right = X + Width
+	/// </summary>
+	public int Right => UseOldBehaviorForRightAndBottom switch
+	{
+		false => X + Width,
+		true => Math.Max(X, X + Width - 1)
+	};
+
+	/// <summary>
+	/// Represents the pixel after the bottom of the rectangle such that Bottom = Y + Height
+	/// </summary>
+	public int Bottom => UseOldBehaviorForRightAndBottom switch
+	{
+		false => Y + Height,
+		true => Math.Max(Y, Y + Height - 1)
+	};
 
 	public Pt Pos => new(X, Y);
 	public Sz Size => new(Width, Height);
