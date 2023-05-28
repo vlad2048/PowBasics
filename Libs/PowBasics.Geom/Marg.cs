@@ -31,7 +31,7 @@ public readonly record struct Marg : IMarg
 public static class MargUtils
 {
 	public static int Dir(this IMarg m, Dir dir) => dir switch {
-		Geom.Dir.Horiz => m.Left + m.Right,
+		Geom.Dir.Horz => m.Left + m.Right,
 		Geom.Dir.Vert => m.Top + m.Bottom,
 		_ => throw new ArgumentException()
 	};

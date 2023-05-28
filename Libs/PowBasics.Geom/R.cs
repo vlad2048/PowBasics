@@ -48,7 +48,7 @@ public readonly record struct R
 	
 	public static R operator -(R r, IMarg m)
 	{
-		if (m.Dir(Dir.Horiz) >= r.Width || m.Dir(Dir.Vert) >= r.Height)
+		if (m.Dir(Dir.Horz) >= r.Width || m.Dir(Dir.Vert) >= r.Height)
 		{
 			var pt = r.Pos + new Pt(m.Left, m.Top);
 			var cappedPt = new Pt(
@@ -66,7 +66,7 @@ public readonly record struct R
 		);
 	}
 
-	public static R operator +(R r, IMarg m) => new(r.X - m.Left, r.Y - m.Top, r.Width + m.Dir(Dir.Horiz), r.Height + m.Dir(Dir.Vert));
+	public static R operator +(R r, IMarg m) => new(r.X - m.Left, r.Y - m.Top, r.Width + m.Dir(Dir.Horz), r.Height + m.Dir(Dir.Vert));
 
 	public Pt Center => new(X + Width / 2, Y + Height / 2);
 	public static R FromCenterAndSize(Pt center, Sz size) => new(center.X - size.Width / 2, center.Y - size.Height / 2, size.Width, size.Height);
@@ -88,7 +88,7 @@ public static class RExt
 
 	public static int Dir(this R r, Dir dir) => dir switch
 	{
-		Geom.Dir.Horiz => r.Width,
+		Geom.Dir.Horz => r.Width,
 		Geom.Dir.Vert => r.Height,
 		_ => throw new ArgumentException()
 	};

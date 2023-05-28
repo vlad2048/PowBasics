@@ -4,11 +4,4 @@
 		<TargetFramework>net7.0</TargetFramework>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Folder Include="CollectionsExt\" />
-		<Folder Include="ColorCode\" />
-		<Folder Include="RandomCode\" />
-		<Folder Include="StringsExt\" />
-	</ItemGroup>
-
 </Project>

@@ -31,14 +31,14 @@ public static class SzExt
 
 	public static int Dir(this Sz size, Dir dir) => dir switch
 	{
-		Geom.Dir.Horiz => size.Width,
+		Geom.Dir.Horz => size.Width,
 		Geom.Dir.Vert => size.Height,
 		_ => throw new ArgumentException()
 	};
 
 	public static Sz FlipIfVert(this Sz size, Dir dir) => dir switch
 	{
-		Geom.Dir.Horiz => size,
+		Geom.Dir.Horz => size,
 		Geom.Dir.Vert => new Sz(size.Height, size.Width),
 		_ => throw new ArgumentException()
 	};

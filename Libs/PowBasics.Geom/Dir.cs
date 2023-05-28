@@ -3,15 +3,15 @@
 
 public enum Dir
 {
-	Horiz,
+	Horz,
 	Vert
 }
 
 public static class DirUtils
 {
 	public static Dir Neg(this Dir dir) => dir switch {
-		Dir.Horiz => Dir.Vert,
-		Dir.Vert => Dir.Horiz,
+		Dir.Horz => Dir.Vert,
+		Dir.Vert => Dir.Horz,
 		_ => throw new ArgumentException()
 	};
 }
