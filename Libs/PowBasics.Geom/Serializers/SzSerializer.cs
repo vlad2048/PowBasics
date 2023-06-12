@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PowBasics.Geom.Serializers;
 
-public class SzSerializer : JsonConverter<Sz>
+public sealed class SzSerializer : JsonConverter<Sz>
 {
 	private record Json(int Width, int Height);
 	private static Json ToJson(Sz e) => new(e.Width, e.Height);

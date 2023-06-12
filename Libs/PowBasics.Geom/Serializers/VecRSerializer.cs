@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PowBasics.Geom.Serializers;
 
-public class VecRSerializer : JsonConverter<VecR>
+public sealed class VecRSerializer : JsonConverter<VecR>
 {
 	private record Json(VecPt Min, VecPt Max);
 	private static Json ToJson(VecR e) => new(e.Min, e.Max);

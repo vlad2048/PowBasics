@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace PowBasics.Geom.Serializers;
 
-public class VecPtSerializer : JsonConverter<VecPt>
+public sealed class VecPtSerializer : JsonConverter<VecPt>
 {
 	private record Json(double X, double Y);
 	private static Json ToJson(VecPt e) => new(e.X, e.Y);

@@ -30,7 +30,7 @@ public static class EqualityUtils
 		return new Comparer<T>(getHashCode, equals);
 	}
 
-	private class Comparer<T> : IEqualityComparer<T>
+	private sealed class Comparer<T> : IEqualityComparer<T>
 	{
 		private readonly Func<T, int> getHashCode;
 		private readonly Func<T, T, bool> equals;
