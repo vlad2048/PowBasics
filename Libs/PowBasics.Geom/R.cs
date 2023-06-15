@@ -94,6 +94,15 @@ public readonly record struct R
 		var num1 = Math.Min(a.X + a.Width, X + Width);
 		var y = Math.Max(a.Y, Y);
 		var num2 = Math.Min(a.Y + a.Height, Y + Height);
+        /*
+            In WinDX (for Pop nodes), it's important for to have the intersection of a rectangle with
+            zero size to be a rectangle with zero size at the correct location.
+
+            This is why we have:
+            num1 >= x && num2 >= y
+            and not:
+            num1 > x && num2 > y
+        */
 		return num1 >= x && num2 >= y ? new R(x, y, num1 - x, num2 - y) : R.Empty;
 	}
 }
