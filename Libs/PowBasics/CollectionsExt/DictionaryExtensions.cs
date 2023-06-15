@@ -29,6 +29,26 @@ public static class DictionaryExtensions
 
 
 	/// <summary>
+	/// Map the key in the Dictionary using a lookup map. <br/>
+	/// Throws an exception if a key is not found <br/>
+	/// </summary>
+	public static IReadOnlyDictionary<K2, V> MapKeys<K1, K2, V>(this IReadOnlyDictionary<K1, V> dict, IReadOnlyDictionary<K1, K2> lookupMap)
+		where K1 : notnull
+		where K2 : notnull
+		=>
+			dict.MapKeys(e => lookupMap[e]);
+
+	/// <summary>
+	/// Map the values in the Dictionary using a lookup map. <br/>
+	/// Throws an exception if a value is not found <br/>
+	/// </summary>
+	public static IReadOnlyDictionary<K, V2> MapValues<K, V1, V2>(this IReadOnlyDictionary<K, V1> dict, IReadOnlyDictionary<V1, V2> lookupMap)
+		where K : notnull
+		=>
+			dict.MapValues(e => lookupMap[e]);
+
+
+	/// <summary>
 	/// Get a value from a Dictionary based on a key, if it doesn't exist, create and add it using the function provided
 	/// </summary>
 	public static TValue GetOrCreate<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, Func<TValue> createFun)
