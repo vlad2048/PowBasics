@@ -94,7 +94,7 @@ public readonly record struct R
 		var num1 = Math.Min(a.X + a.Width, X + Width);
 		var y = Math.Max(a.Y, Y);
 		var num2 = Math.Min(a.Y + a.Height, Y + Height);
-		return num1 > x && num2 > y ? new R(x, y, num1 - x, num2 - y) : R.Empty;
+		return num1 >= x && num2 >= y ? new R(x, y, num1 - x, num2 - y) : R.Empty;
 	}
 }
 
