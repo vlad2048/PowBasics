@@ -142,4 +142,25 @@ public static class RExt
 	public static R CapToMin(this R r, int minWidth, int minHeight) => new(r.X, r.Y, Math.Max(r.Width, minWidth), Math.Max(r.Height, minHeight));
 	public static R WithZeroPos(this R r) => new(Pt.Empty, r.Size);
 	public static R WithSize(this R r, Sz sz) => new(r.Pos, sz);
+
+	public static R Enlarge(this R r, int v)
+	{
+		if (v >= 0)
+		{
+			return new R(r.X - v, r.Y - v, r.Width + v * 2, r.Height + v * 2);
+		}
+		else
+		{
+			v = -v;
+			var left = r.X + v;
+			var top = r.Y + v;
+			var right = r.Right - v;
+			var bottom = r.Bottom - v;
+			if (left > right)
+				left = right = (left + right) / 2;
+			if (top > bottom)
+				top = bottom = (top + bottom) / 2;
+			return new R(left, top, right - left, bottom - top);
+		}
+	}
 }
