@@ -129,14 +129,23 @@ public static class RExt
 
 	public static R Union(this IEnumerable<R> listE)
 	{
-		var list = listE.Where(e => e != R.Empty).ToList();
-		if (list.Count == 0)
-			return R.Empty;
+		var list = listE.Where(e => e != R.Empty).ToArray();
+		if (list.Length == 0) return R.Empty;
 		var minX = list.Min(e => e.X);
 		var minY = list.Min(e => e.Y);
 		var maxX = list.Max(e => e.X + e.Width);
 		var maxY = list.Max(e => e.Y + e.Height);
 		return new R(minX, minY, maxX - minX, maxY - minY);
+	}
+
+	public static R Intersection(this IEnumerable<R> source)
+	{
+		var arr = source.ToArray();
+		if (arr.Length == 0) return R.Empty;
+		var curR = arr[0];
+		for (var i = 1; i < arr.Length; i++)
+			curR = curR.Intersection(arr[i]);
+		return curR;
 	}
 	
 	public static R CapToMin(this R r, int minWidth, int minHeight) => new(r.X, r.Y, Math.Max(r.Width, minWidth), Math.Max(r.Height, minHeight));
