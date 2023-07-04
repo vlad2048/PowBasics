@@ -3,6 +3,8 @@
 public static class StringExt
 {
 	public static string[] SplitInLines(this string? str) => str == null ? Array.Empty<string>() : str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+	
+	public static string JoinLines(this IEnumerable<string> source) => string.Join(Environment.NewLine, source);
 
 	public static string Truncate(this string str, int lng) => str switch
 	{
