@@ -32,6 +32,12 @@ public static class HtmlRenderer
 							font-family: 'Cascadia Mono';
 							font-size: 12pt;
 						}
+						.maindiv {
+							position: relative;
+						}
+						span {
+							position: absolute;
+						}
 						:root {
 			"""
 		);
@@ -52,6 +58,7 @@ public static class HtmlRenderer
 			"""
 		);
 
+		var y = 0;
 		foreach (var line in txt.Lines)
 		{
 			sb.AppendLine(
@@ -59,6 +66,7 @@ public static class HtmlRenderer
 						<div>
 			"""
 			);
+			var x = 0;
 			foreach (var chunk in line)
 			{
 				var (text, color) = chunk;
@@ -67,17 +75,21 @@ public static class HtmlRenderer
 					true => $"var(--{name})",
 					false => color.ToHex()
 				};
+				var xStr = $"{x}ch";
+				var yStr = $"{y}em";
 				sb.AppendLine(
 			$"""
-							<span style="color:{colorStr}">{text}</span>
+							<span style="left:{xStr}; top:{yStr}; color:{colorStr}">{text}</span>
 			"""
 				);
+				x += text.Length;
 			}
 			sb.AppendLine(
 			"""
 						</div>
 			"""
 			);
+			y++;
 		}
 
 		sb.AppendLine(
