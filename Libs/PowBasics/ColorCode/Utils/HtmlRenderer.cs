@@ -58,7 +58,7 @@ public static class HtmlRenderer
 			"""
 		);
 
-		var y = 0;
+		var y = 0.0;
 		foreach (var line in txt.Lines)
 		{
 			sb.AppendLine(
@@ -76,7 +76,7 @@ public static class HtmlRenderer
 					false => color.ToHex()
 				};
 				var xStr = $"{x}ch";
-				var yStr = $"{y}em";
+				var yStr = $"{y:F2}em";
 				sb.AppendLine(
 			$"""
 							<span style="left:{xStr}; top:{yStr}; color:{colorStr}">{text}</span>
@@ -89,7 +89,7 @@ public static class HtmlRenderer
 						</div>
 			"""
 			);
-			y++;
+			y += 1.19;
 		}
 
 		sb.AppendLine(
