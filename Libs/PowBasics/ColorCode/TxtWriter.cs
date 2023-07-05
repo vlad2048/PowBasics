@@ -5,10 +5,12 @@ using System.Text;
 
 namespace PowBasics.ColorCode;
 
+
 public interface ITxtWriter
 {
-	void Write(Txt txt);
+	void Write(TxtChunk chunk);
 	void Write(string text, Color color);
+	void Write(Txt txt);
 	void WriteLine(string text, Color color);
 	void WriteLine();
 	void SurroundWith(IAsciiBox box, Color color, string? title = null);
@@ -29,6 +31,10 @@ public sealed class TxtWriter : ITxtWriter
 		}
 	}
 
+	public void Write(TxtChunk chunk) => curLine.Add(chunk);
+
+	public void Write(string text, Color color) => curLine.Add(new TxtChunk(text, color));
+
 	public void Write(Txt txt)
 	{
 		foreach (var line in txt.Lines)
@@ -38,10 +44,6 @@ public sealed class TxtWriter : ITxtWriter
 			WriteLine();
 		}
 	}
-
-	public void Write(TxtChunk chunk) => curLine.Add(chunk);
-
-	public void Write(string text, Color color) => curLine.Add(new TxtChunk(text, color));
 
 	public void WriteLine(string text, Color color)
 	{
