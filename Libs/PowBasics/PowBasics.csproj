@@ -5,9 +5,4 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Folder Include="ColorCode\Utils\" />
-		<Folder Include="ColorCode\Structs\" />
-	</ItemGroup>
-
 </Project>
