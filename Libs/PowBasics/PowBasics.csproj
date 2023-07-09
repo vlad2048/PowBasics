@@ -6,7 +6,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="QueryExpr_\" />
+		<Folder Include="QueryExpr_\" />
 	</ItemGroup>
 
 </Project>
