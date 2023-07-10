@@ -34,7 +34,7 @@ public sealed class TxtWriter : ITxtWriter
 		}
 	}
 
-	public TxtWriter(int indentSize) => this.indentSize = indentSize;
+	public TxtWriter(int indentSize = 4) => this.indentSize = indentSize;
 
 	public void Push() => level++;
 	public void Pop() => level--;
