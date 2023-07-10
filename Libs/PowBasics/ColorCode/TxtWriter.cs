@@ -37,16 +37,25 @@ public sealed class TxtWriter : ITxtWriter
 	public TxtWriter(int indentSize = 4) => this.indentSize = indentSize;
 
 	public void Push() => level++;
-	public void Pop() => level--;
+	public void Pop() => level = Math.Max(0, level - 1);
 
 	public void Write(TxtChunk chunk)
 	{
-		if (curLine.Count == 0)
-			curLine.Add(new TxtChunk(Pad, Color.White));
+		AddPaddingIFN();
 		curLine.Add(chunk);
 	}
 
-	public void Write(string text, Color color) => curLine.Add(new TxtChunk(text, color));
+	public void Write(string text, Color color)
+	{
+		AddPaddingIFN();
+		curLine.Add(new TxtChunk(text, color));
+	}
+
+	private void AddPaddingIFN()
+	{
+		if (curLine.Count == 0)
+			curLine.Add(new TxtChunk(Pad, Color.White));
+	}
 
 	public void Write(Txt txt)
 	{
