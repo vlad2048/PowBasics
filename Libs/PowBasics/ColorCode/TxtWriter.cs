@@ -21,6 +21,9 @@ public sealed class TxtWriter : ITxtWriter
 {
 	private readonly List<List<TxtChunk>> lines = new();
 	private readonly List<TxtChunk> curLine = new();
+	private readonly int indentSize;
+	private int level;
+	private string Pad => new(' ', level * indentSize);
 
 	public Txt Txt
 	{
@@ -31,7 +34,17 @@ public sealed class TxtWriter : ITxtWriter
 		}
 	}
 
-	public void Write(TxtChunk chunk) => curLine.Add(chunk);
+	public TxtWriter(int indentSize) => this.indentSize = indentSize;
+
+	public void Push() => level++;
+	public void Pop() => level--;
+
+	public void Write(TxtChunk chunk)
+	{
+		if (curLine.Count == 0)
+			curLine.Add(new TxtChunk(Pad, Color.White));
+		curLine.Add(chunk);
+	}
 
 	public void Write(string text, Color color) => curLine.Add(new TxtChunk(text, color));
 
