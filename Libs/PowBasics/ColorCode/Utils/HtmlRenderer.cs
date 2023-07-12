@@ -37,6 +37,7 @@ public static class HtmlRenderer
 						}
 						span {
 							position: absolute;
+							white-space: pre;
 						}
 						:root {
 			"""
