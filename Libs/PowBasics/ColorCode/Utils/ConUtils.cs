@@ -5,6 +5,23 @@ namespace PowBasics.ColorCode.Utils;
 
 public static class ConUtils
 {
+	public static void Write(string str, Color c)
+	{
+		SetColor(c);
+		Console.Write(str);
+	}
+
+	public static void WriteLine(string str, Color c)
+	{
+		SetColor(c);
+		Console.WriteLine(str);
+	}
+
+	public static void WriteLine() => Console.WriteLine();
+
+	public static void WriteLine(Txt txt) => PrintToConsole(txt);
+
+
 	public static void PrintToConsole(this Txt txt)
 	{
 		foreach (var line in txt.Lines)
