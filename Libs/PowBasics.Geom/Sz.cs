@@ -21,6 +21,7 @@ public readonly record struct Sz
 	public static Sz operator -(Sz a, Sz b) => new(Math.Max(0, a.Width - b.Width), Math.Max(0, a.Height - b.Height));
 	public static Sz operator *(Sz a, int z) => new(a.Width * z, a.Height * z);
 	public static Sz operator *(Sz a, double z) => new((int)(a.Width * z), (int)(a.Height * z));
+	public static Sz operator /(Sz a, double z) => new((int)(a.Width / z), (int)(a.Height / z));
 }
 
 
