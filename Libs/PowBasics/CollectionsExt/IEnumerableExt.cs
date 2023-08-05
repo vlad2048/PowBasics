@@ -44,6 +44,55 @@ public static class IEnumerableExt
 	public static HashSet<U> ToHashSet<T, U>(this IEnumerable<T> source, Func<T, U> fun) => source.Select(fun).ToHashSet();
 
 
+	// **********************
+	// * IndexOf Extensions *
+	// **********************
+	public static int IndexOf<T>(this IEnumerable<T> source, T elt) where T : notnull
+	{
+		var i = 0;
+		foreach (var cur in source)
+		{
+			if (cur.Equals(elt))
+				return i;
+			i++;
+		}
+		return -1;
+	}
+	public static int IndexOfEnsure<T>(this IEnumerable<T> source, T elt) where T : notnull
+	{
+		var i = 0;
+		foreach (var cur in source)
+		{
+			if (cur.Equals(elt))
+				return i;
+			i++;
+		}
+		throw new ArgumentException("Failed to find the element index");
+	}
+	public static int IndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+	{
+		var i = 0;
+		foreach (var cur in source)
+		{
+			if (predicate(cur))
+				return i;
+			i++;
+		}
+		return -1;
+	}
+	public static int IndexOfEnsure<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+	{
+		var i = 0;
+		foreach (var cur in source)
+		{
+			if (predicate(cur))
+				return i;
+			i++;
+		}
+		throw new ArgumentException("Failed to find the element index");
+	}
+
+
 	// ********************
 	// * Where Extensions *
 	// ********************

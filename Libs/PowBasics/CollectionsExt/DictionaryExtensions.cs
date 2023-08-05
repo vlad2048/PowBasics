@@ -58,4 +58,11 @@ public static class DictionaryExtensions
 			val = dict[key] = createFun();
 		return val;
 	}
+
+	public static void Add<K, V>(this Dictionary<K, List<V>> map, K key, V val) where K : notnull
+	{
+		if (!map.TryGetValue(key, out var list))
+			list = map[key] = new List<V>();
+		list.Add(val);
+	}
 }
