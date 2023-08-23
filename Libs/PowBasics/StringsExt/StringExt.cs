@@ -20,4 +20,6 @@ public static class StringExt
 		_ when str.Length > lng => str[..lng],
 		_ => str
 	};
+	
+	public static string RemoveTrailing(this string str, string suffix) => str.EndsWith(suffix) ? str[..^suffix.Length] : str;
 }
