@@ -5,9 +5,4 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Folder Include="Concurrency\" />
-		<Folder Include="QueryExpr_\" />
-	</ItemGroup>
-
 </Project>
