@@ -2,6 +2,26 @@
 
 public static class IEnumerableExt
 {
+	public static int SumOrZero<T>(this IEnumerable<T> source, Func<T, int> fun)
+	{
+		var sum = 0;
+		foreach (var elt in source)
+			sum += fun(elt);
+		return sum;
+	}
+
+	public static int MaxOrZero<T>(this IEnumerable<T> source, Func<T, int> fun)
+	{
+		var max = 0;
+		foreach (var elt in source)
+		{
+			var v = fun(elt);
+			if (v > max)
+				max = v;
+		}
+		return max;
+	}
+
 	public static IEnumerable<T> RepeatInfinitely<T>(this IEnumerable<T> source)
 	{
 		var arr = source.ToArray();

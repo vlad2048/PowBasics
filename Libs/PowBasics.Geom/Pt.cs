@@ -1,5 +1,6 @@
-﻿namespace PowBasics.Geom;
+﻿using System.Text.Json.Serialization;
 
+namespace PowBasics.Geom;
 
 public readonly record struct Pt(int X, int Y)
 {
@@ -10,28 +11,9 @@ public readonly record struct Pt(int X, int Y)
 	public static Pt operator +(Pt a, Pt b) => new(a.X + b.X, a.Y + b.Y);
 	public static Pt operator -(Pt a, Pt b) => new(a.X - b.X, a.Y - b.Y);
 	public static Pt operator -(Pt a) => new(-a.X, -a.Y);
+	public static Pt operator +(Pt a, Marg m) => new(a.X + m.Left, a.Y + m.Top);
+	public static Pt operator -(Pt a, Marg m) => new(a.X - m.Left, a.Y - m.Top);
+
+	[JsonIgnore]
 	public double Length => Math.Sqrt(X * X + Y * Y);
-}
-
-
-public static class PtExt
-{
-	public static VecPt ToVecPt(this Pt p) => new(p.X, p.Y);
-
-	public static int Dir(this Pt pt, Dir dir) => dir switch
-	{
-		Geom.Dir.Horz => pt.X,
-		Geom.Dir.Vert => pt.Y,
-		_ => throw new ArgumentException()
-	};
-
-	public static Pt CapOfsLarge(this Pt ofs, Sz sz)
-	{
-		var x = Math.Max(0, ofs.X);
-		var y = Math.Max(0, ofs.Y);
-		return new Pt(
-			Math.Max(0, Math.Min(x, sz.Width)),
-			Math.Max(0, Math.Min(y, sz.Height))
-		);
-	}
 }

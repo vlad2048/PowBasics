@@ -1,36 +1,24 @@
 ﻿namespace PowBasics.Geom;
 
-public readonly record struct Marg : IMarg
+public readonly record struct Marg(int Top, int Right, int Bottom, int Left)
 {
-	public int Top { get; }
-	public int Right { get; }
-	public int Bottom { get; }
-	public int Left { get; }
+	public Marg MgUp(int top) => this with { Top = top };
+	public Marg MgRight(int right) => this with { Right = right };
+	public Marg MgDown(int bottom) => this with { Bottom = bottom };
+	public Marg MgLeft(int left) => this with { Left = left };
 
-	public Marg(int top, int right, int bottom, int left) {
-		if (top < 0 || right < 0 || bottom < 0 || left < 0) throw new ArgumentException();
-		Top = top;
-		Right = right;
-		Bottom = bottom;
-		Left = left;
-	}
-
-	public Marg MgUp(int top) => new(top, Right, Bottom, Left);
-	public Marg MgRight(int right) => new(Top, right, Bottom, Left);
-	public Marg MgDown(int bottom) => new(Top, Right, bottom, Left);
-	public Marg MgLeft(int left) => new(Top, Right, Bottom, left);
-
-	public string FmtConcise() => (this == default) switch
+	public override string ToString() => (this == default) switch
 	{
 		true => string.Empty,
-		false when (Top == Right && Top == Bottom && Top == Left) => $"mg({Top})",
+		false when Top == Right && Top == Bottom && Top == Left => $"mg({Top})",
 		_ => $"mg({Top},{Right},{Bottom},{Left})"
 	};
 }
 
 public static class MargUtils
 {
-	public static int Dir(this IMarg m, Dir dir) => dir switch {
+	public static int Dir(this Marg m, Dir dir) => dir switch
+	{
 		Geom.Dir.Horz => m.Left + m.Right,
 		Geom.Dir.Vert => m.Top + m.Bottom,
 		_ => throw new ArgumentException()

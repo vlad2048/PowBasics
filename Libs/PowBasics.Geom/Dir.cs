@@ -1,6 +1,5 @@
 ﻿namespace PowBasics.Geom;
 
-
 public enum Dir
 {
 	Horz,
@@ -9,7 +8,8 @@ public enum Dir
 
 public static class DirUtils
 {
-	public static Dir Neg(this Dir dir) => dir switch {
+	public static Dir Neg(this Dir dir) => dir switch
+	{
 		Dir.Horz => Dir.Vert,
 		Dir.Vert => Dir.Horz,
 		_ => throw new ArgumentException()
