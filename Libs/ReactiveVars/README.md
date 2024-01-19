@@ -16,19 +16,20 @@ global using LR = ReactiveVars.ReactiveVarsLogger;
 
 ## Disp Tracking
 ```c#
-void Main() {
-	var d = MkD("Name");
-	LogAndTellIfThereAreUndisposedDisps();	// in DispMaker
-}
+// Create disps (this function in in the DispMaker class)
+var d = MkD("Name");
+
+// Call this at the end of your program (or test)
+DispDiag.CheckForUndisposedDisps();
 ```
 
 ## Tests
 ```c#
 [SetUp] void Setup() {
-	ResetDispsForTests();
+	Reseter.ResetDispsForTests();
 }
 [TearDown] void Teardown() {
-	LogAndTellIfThereAreUndisposedDisps();
+	DispDiag.CheckForUndisposedDisps();
 }
 ```
 

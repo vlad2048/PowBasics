@@ -16,6 +16,6 @@ public static class Reseter
 {
 	public static void Reset()
 	{
-		ResetDispsForTests();
+		DispDiag.ResetDispsForTests();
 	}
 }

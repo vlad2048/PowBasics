@@ -1,18 +1,48 @@
 ﻿# PowBasics
 
-## Math
+## Json
+### Create a converter
 ```c#
-public static class MathUtils
+static class Converters
 {
-    // Cap a number between 2 bounds (inclusive)
-    int Cap(int val, int min, int max);
+	public static readonly JsonConverter<Color> ColorConverter = JsonConverterMaker.Make<Color, ColorSer>(
+		e => new(e.A, e.R, e.G, e.B),
+		e => Color.FromArgb(e.A, e.R, e.G, e.B)
+	);
 
-    /*
-      Compute the minimum number of multiples of b we need to be at least a
-      Note: this is not the same as integer division.
-      Integer division: 7 / 3 = 2 (but 2*3=6 doesn't cover/fill 7 completely)
-      FillingDiv(7, 3) = 3
-    */
-    int FillingDiv(int a, int b);
+	private sealed record ColorSer(byte A, byte R, byte G, byte B);
+}
+```
+### Create a converter factory to convert a generic type
+```c#
+class OptionConverterFactory : JsonConverterFactory
+{
+	public override bool CanConvert(Type typeToConvert) =>
+		typeToConvert.IsGenericType &&
+		typeToConvert.GetGenericTypeDefinition() == typeof(Option<>);
+
+	public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
+	{
+		var wrappedType = typeToConvert.GetGenericArguments()[0];
+		var converter = (JsonConverter)Activator.CreateInstance(typeof(OptionConverter<>).MakeGenericType(wrappedType))!;
+		return converter;
+	}
+
+
+	private sealed class OptionConverter<T> : JsonConverter<Option<T>>
+	{
+		private sealed record Ser(bool HasValue, T V);
+		private static Ser ToSer(Option<T> opt) => new(opt.IsSome, opt.IfNoneUnsafe(default(T))!);
+		private static Option<T> FromSer(Ser ser) => ser.HasValue ? ser.V : None;
+
+		public override Option<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		{
+			using var doc = JsonDocument.ParseValue(ref reader);
+			return FromSer(doc.Deserialize<Ser>(options)!);
+		}
+
+		public override void Write(Utf8JsonWriter writer, Option<T> value, JsonSerializerOptions options) =>
+			JsonSerializer.Serialize(writer, ToSer(value), options);
+	}
 }
 ```
