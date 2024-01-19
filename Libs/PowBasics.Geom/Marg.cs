@@ -13,6 +13,8 @@ public readonly record struct Marg(int Top, int Right, int Bottom, int Left)
 		false when Top == Right && Top == Bottom && Top == Left => $"mg({Top})",
 		_ => $"mg({Top},{Right},{Bottom},{Left})"
 	};
+
+	public static readonly Marg Empty = default;
 }
 
 public static class MargUtils
