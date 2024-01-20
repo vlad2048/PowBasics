@@ -32,7 +32,7 @@ public static class RxCfg
 				return obsD;
 			})
 			.Replay(1)
-			.RefCount()
+			.AutoConnect()
 			.ToVar();
 }
 

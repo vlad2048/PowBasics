@@ -33,6 +33,11 @@ DispDiag.CheckForUndisposedDisps();
 }
 ```
 
+## LINQPad
+```c#
+void OnStart() => Reseter.Reset();
+```
+
 ## Config Tracker
 ```c#
 public record struct CfgLog(

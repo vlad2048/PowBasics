@@ -4,12 +4,19 @@ using PowBasics.CollectionsExt;
 
 namespace ReactiveVars;
 
+public sealed record DispStats(
+	int Created,
+	int Disposed
+);
+
 public static class DispDiag
 {
 	// **********
 	// * Public *
 	// **********
 	public static bool DispMakerLoggingEnabled { get; set; }
+
+	public static DispStats GetStats() => new(countCreated, countDisposed);
 
 	public static bool CheckForUndisposedDisps(bool waitForKey = true)
 	{
@@ -25,12 +32,14 @@ public static class DispDiag
 	// ************
 	internal static Disp MkD(string nameBase, string srcFile, int srcLine)
 	{
+		countCreated++;
 		var name = GetFullName(nameBase);
 		Print(name, true, indentLevel++);
 		var d = new Disp();
 		map[d] = DispNfo.Make(d, srcFile, srcLine);
 		Disposable.Create(() =>
 		{
+			countDisposed++;
 			Print(name, false, --indentLevel);
 			map[d] = map[d].FlagDispose();
 		}).D(d);
