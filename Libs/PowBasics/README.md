@@ -1,5 +1,24 @@
 ﻿# PowBasics
 
+## IEquatable / GetHashCodeAggregate
+```c#
+sealed class ArrRec : IEquatable<ArrRec>
+{
+	public string[] Arr { get; }
+	public ArrRec(string[] arr) => Arr = arr;
+	public bool Equals(ArrRec? other)
+	{
+		if (ReferenceEquals(null, other)) return false;
+		if (ReferenceEquals(this, other)) return true;
+		return Arr.Length == other.Arr.Length && Arr.Zip(other.Arr).All(t => t.Item1 == t.Item2);
+	}
+	public override bool Equals(object? obj) => ReferenceEquals(this, obj) || obj is ArrRec other && Equals(other);
+	public override int GetHashCode() => Arr.GetHashCodeAggregate();
+	public static bool operator ==(ArrRec? left, ArrRec? right) => Equals(left, right);
+	public static bool operator !=(ArrRec? left, ArrRec? right) => !Equals(left, right);
+}
+```
+
 ## Json
 ### Create a converter
 ```c#

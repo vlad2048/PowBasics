@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Play", "Play", "{7DB76B70-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "Play\Playground\Playground.csproj", "{E04D610D-6638-4D80-BB57-AC77BAE369D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveVars", "Libs\ReactiveVars\ReactiveVars.csproj", "{437628F8-7D0F-46A8-8AB7-FCBE576A73B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactiveVars", "Libs\ReactiveVars\ReactiveVars.csproj", "{437628F8-7D0F-46A8-8AB7-FCBE576A73B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowDisp", "Libs\PowDisp\PowDisp.csproj", "{B6BE3531-A41C-4A91-8237-8D7906265EF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{437628F8-7D0F-46A8-8AB7-FCBE576A73B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437628F8-7D0F-46A8-8AB7-FCBE576A73B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437628F8-7D0F-46A8-8AB7-FCBE576A73B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6BE3531-A41C-4A91-8237-8D7906265EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6BE3531-A41C-4A91-8237-8D7906265EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6BE3531-A41C-4A91-8237-8D7906265EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6BE3531-A41C-4A91-8237-8D7906265EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 		{C7E6363E-463F-42E1-B1CD-3C0697A54F65} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
 		{E04D610D-6638-4D80-BB57-AC77BAE369D7} = {7DB76B70-9AA3-4B17-B2E9-B3A3A7DD3531}
 		{437628F8-7D0F-46A8-8AB7-FCBE576A73B2} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
+		{B6BE3531-A41C-4A91-8237-8D7906265EF9} = {37A9B727-88D1-432E-8711-01A9A0CF8F51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE94F977-B49B-49B2-A438-8C695557259D}

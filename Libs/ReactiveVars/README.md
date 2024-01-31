@@ -16,7 +16,7 @@ global using LR = ReactiveVars.ReactiveVarsLogger;
 
 ## Disp Tracking
 ```c#
-// Create disps (this function in in the DispMaker class)
+// Create disps (this function is in the DispMaker class)
 var d = MkD("Name");
 
 // Call this at the end of your program (or test)
