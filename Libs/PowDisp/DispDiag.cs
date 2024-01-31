@@ -13,6 +13,7 @@ public static class DispDiag
 	// **********
 	// * Public *
 	// **********
+	public static bool DisposeInReverseOrder { get; set; }
 	public static bool DispMakerLoggingEnabled { get; set; }
 
 	public static DispStats GetStats() => new(countCreated, countDisposed);

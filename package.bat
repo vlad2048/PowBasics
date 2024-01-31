@@ -1,4 +1,4 @@
-set ver=0.1.3
+set ver=0.1.4
 set slnFolder=C:\dev\nuget\libs\PowBasics
 set nugetFolder=C:\Users\vlad.niculescu\.nuget\packages
 set nugetUrl=https://api.nuget.org/v3/index.json
