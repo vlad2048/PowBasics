@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Reactive.Disposables;
+using System.Runtime.CompilerServices;
 
 namespace PowDisp;
 
@@ -8,104 +9,44 @@ namespace PowDisp;
 /// </summary>
 public sealed class Disp : ICollection<IDisposable>, ICancelable
 {
-	private const string DISPOSABLES_CANT_CONTAIN_NULL = "Disposables can't contain null";
 	private readonly object _gate = new();
 	private bool _disposed;
 	private List<IDisposable?> _disposables;
 	private int _count;
 	private const int ShrinkThreshold = 64;
 
-	// Default initial capacity of the _disposables list in case
-	// The number of items is not known upfront
-	private const int DefaultCapacity = 16;
-
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Disp"/> class with no disposables contained by it initially.
 	/// </summary>
-	public Disp()
+	public Disp(
+		string nameBase,
+		[CallerFilePath] string srcFile = "",
+		[CallerLineNumber] int srcLine = 0
+	)
 	{
 		_disposables = [];
+		DispDiag.NotifyNewDisp(this, nameBase, srcFile, srcLine);
 	}
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Disp"/> class with the specified number of disposables.
 	/// </summary>
-	/// <param name="capacity">The number of disposables that the new Disp can initially store.</param>
 	/// <exception cref="ArgumentOutOfRangeException"><paramref name="capacity"/> is less than zero.</exception>
-	public Disp(int capacity)
+	public Disp(
+		int capacity,
+		string nameBase,
+		[CallerFilePath] string srcFile = "",
+		[CallerLineNumber] int srcLine = 0
+	)
 	{
+		DispDiag.NotifyNewDisp(this, nameBase, srcFile, srcLine);
+
 		if (capacity < 0)
 		{
 			throw new ArgumentOutOfRangeException(nameof(capacity));
 		}
 
 		_disposables = new List<IDisposable?>(capacity);
-	}
-
-	/// <summary>
-	/// Initializes a new instance of the <see cref="Disp"/> class from a group of disposables.
-	/// </summary>
-	/// <param name="disposables">Disposables that will be disposed together.</param>
-	/// <exception cref="ArgumentNullException"><paramref name="disposables"/> is <c>null</c>.</exception>
-	/// <exception cref="ArgumentException">Any of the disposables in the <paramref name="disposables"/> collection is <c>null</c>.</exception>
-	public Disp(params IDisposable[] disposables)
-	{
-		if (disposables == null)
-		{
-			throw new ArgumentNullException(nameof(disposables));
-		}
-
-		_disposables = ToList(disposables);
-
-		// _count can be read by other threads and thus should be properly visible
-		// also releases the _disposables contents so it becomes thread-safe
-		Volatile.Write(ref _count, _disposables.Count);
-	}
-
-	/// <summary>
-	/// Initializes a new instance of the <see cref="Disp"/> class from a group of disposables.
-	/// </summary>
-	/// <param name="disposables">Disposables that will be disposed together.</param>
-	/// <exception cref="ArgumentNullException"><paramref name="disposables"/> is <c>null</c>.</exception>
-	/// <exception cref="ArgumentException">Any of the disposables in the <paramref name="disposables"/> collection is <c>null</c>.</exception>
-	public Disp(IEnumerable<IDisposable> disposables)
-	{
-		if (disposables == null)
-		{
-			throw new ArgumentNullException(nameof(disposables));
-		}
-
-		_disposables = ToList(disposables);
-
-		// _count can be read by other threads and thus should be properly visible
-		// also releases the _disposables contents so it becomes thread-safe
-		Volatile.Write(ref _count, _disposables.Count);
-	}
-
-	private static List<IDisposable?> ToList(IEnumerable<IDisposable> disposables)
-	{
-		var capacity = disposables switch
-		{
-			IDisposable[] a => a.Length,
-			ICollection<IDisposable> c => c.Count,
-			_ => DefaultCapacity
-		};
-
-		var list = new List<IDisposable?>(capacity);
-
-		// do the copy and null-check in one step to avoid a
-		// second loop for just checking for null items
-		foreach (var d in disposables)
-		{
-			if (d == null)
-			{
-				throw new ArgumentException(DISPOSABLES_CANT_CONTAIN_NULL, nameof(disposables));
-			}
-
-			list.Add(d);
-		}
-
-		return list;
 	}
 
 	/// <summary>

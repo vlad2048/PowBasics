@@ -1,23 +1,22 @@
 ﻿# PowDisp
 
-## Usings
+## Usage
 ```c#
-global using Obs = System.Reactive.Linq.Observable;
-global using static PowDisp.DispMaker;
+// Create a Disp
+var d = new Disp("Name");
+
+// Use extension method to add IDisposable objects to it
+IDisposable myObject = new MyObject().D(d);
 ```
 
-## Disp Tracking
+## Check that all Disps were disposed
 ```c#
-// Create disps (this function is in the DispMaker class)
-var d = MkD("Name");
-
 // Call this at the end of your program (or test)
 DispDiag.CheckForUndisposedDisps();
 ```
 
 ## Config
 ```c#
-// Makes Disp dispose of its contained IDisposables in reverse order
 DispDiag.DisposeInReverseOrder = true;
 ```
 

@@ -39,12 +39,11 @@ public static class DispDiag
 	// ************
 	// * Internal *
 	// ************
-	internal static Disp MkD(string nameBase, string srcFile, int srcLine)
+	internal static void NotifyNewDisp(Disp d, string nameBase, string srcFile, int srcLine)
 	{
 		countCreated++;
 		var name = GetFullName(nameBase);
 		Print(name, true, indentLevel++);
-		var d = new Disp();
 		map[d] = DispNfo.Make(d, srcFile, srcLine);
 		Disposable.Create(() =>
 		{
@@ -52,7 +51,6 @@ public static class DispDiag
 			Print(name, false, --indentLevel);
 			map[d] = map[d].FlagDispose();
 		}).D(d);
-		return d;
 	}
 
 
