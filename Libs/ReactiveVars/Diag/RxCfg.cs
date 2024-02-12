@@ -1,6 +1,7 @@
 ﻿using System.Reactive.Linq;
 using PowBasics.Files;
 using PowBasics.Json_;
+using PowDisp;
 
 namespace ReactiveVars;
 
@@ -11,7 +12,7 @@ public static class RxCfg
 	public static IRoVar<C> Make<C>(string filename, C defaultValue, Jsoner jsoner) =>
 		Obs.Create<C>(obs =>
 			{
-				var obsD = MkD("Cfg");
+				var obsD = new Disp("Cfg");
 
 				var init = jsoner.LoadOrCreateDefault(filename.MakeFolderForFileIFN(), defaultValue);
 				obs.OnNext(init);

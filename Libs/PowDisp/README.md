@@ -6,7 +6,7 @@
 var d = new Disp("Name");
 
 // Use extension method to add IDisposable objects to it
-IDisposable myObject = new MyObject().D(d);
+var myObject = new MyDisposableObject().D(d);
 ```
 
 ## Check that all Disps were disposed
@@ -17,10 +17,11 @@ DispDiag.CheckForUndisposedDisps();
 
 ## Config
 ```c#
+// If you want Disps to dispose of their IDisposables in reverse order set:
 DispDiag.DisposeInReverseOrder = true;
 ```
 
-## Tests
+## Unit Tests
 ```c#
 [SetUp] void Setup() {
 	Reseter.ResetDispsForTests();

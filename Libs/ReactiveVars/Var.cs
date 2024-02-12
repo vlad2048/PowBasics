@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using PowDisp;
 
 namespace ReactiveVars;
 

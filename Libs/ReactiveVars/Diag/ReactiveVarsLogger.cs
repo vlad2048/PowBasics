@@ -1,6 +1,7 @@
 ﻿using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using PowDisp;
 
 namespace ReactiveVars;
 
@@ -64,7 +65,7 @@ public static class ReactiveVarsLogger
 	public static IDisposable Log(this IDisposable d, string name)
 	{
 		WriteLine($"[{name}].ctor()");
-		var wrapD = MkD($"log({name})");
+		var wrapD = new Disp($"log({name})");
 		d.D(wrapD);
 		Disposable.Create(() => WriteLine($"[{name}].Dispose()")).D(wrapD);
 		return wrapD;

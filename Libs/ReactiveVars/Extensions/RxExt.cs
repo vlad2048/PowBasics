@@ -2,6 +2,7 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using DynamicData.Kernel;
+using PowDisp;
 
 namespace ReactiveVars;
 
@@ -24,7 +25,7 @@ public static class RxExt
 
 		var destination =
 			Obs.Using(
-				() => MkD($"TerminateWithAction<{typeof(T).Name}>"),
+				() => new Disp($"TerminateWithAction<{typeof(T).Name}>"),
 				d => Obs.Create<T>(obs =>
 				{
 					source.Subscribe(obs.OnNext).D(d);
@@ -68,7 +69,7 @@ public static class RxExt
 					.Select(fun =>
 					{
 						serD.Disposable = null;
-						var stateD = MkD($"InvokeAndSequentiallyDispose<{typeof(T).Name}>");
+						var stateD = new Disp($"InvokeAndSequentiallyDispose<{typeof(T).Name}>");
 						var state = fun(stateD);
 						serD.Disposable = stateD;
 						return state;
@@ -121,7 +122,7 @@ public static class RxExt
 	public static IObservable<Unit> WhenDisposed<T>(this T hasD) where T : IHasDisp => hasD.D.WhenDisposed();
 	public static IObservable<Unit> WhenDisposed(this Disp d) =>
 		Obs.Using(
-			() => new Disp(),
+			() => new Disp("WhenDisposed"),
 			obsD =>
 			{
 				ISubject<Unit> when = new AsyncSubject<Unit>().D(obsD);
