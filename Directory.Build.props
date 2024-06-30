@@ -11,7 +11,6 @@
 		<Authors>vlad2048</Authors>
 		<Description>Collection of general utility functions</Description>
 		<PackageTags>Rx, Reactive, Geometry</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/vlad2048/PowBasics</PackageProjectUrl>
 	</PropertyGroup>
 
